@@ -1,7 +1,5 @@
 package com.cool.fun.stuff;
 
-import java.util.zip.Deflater;
-
 public class Player {
 
     private Integer x;
