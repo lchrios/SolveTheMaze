@@ -5,17 +5,27 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is the main class which will receive the file path 
+ * and then instantiate the Maze class through the parseMaze method.
+ * @author lChrios
+ * 
+ */
 public class SolveTheMaze {
     
     /**
-     * @param args - String[] contains at the 0 position the file path to the puzzle file
+     * The main function will receive the filepath through the command line interface.
+     * This path will be passed into the parser which will convert it 
+     * into a Maze object and then start the simulation.
+     * 
+     * @param args      String[] contains at the 0 position the file path to the puzzle file
      */
     public static void main(String[] args) {
         
         //String filePath = args[0];
-        //String filePath = "C:\\Users\\marco\\OneDrive\\Documentos\\SolveTheMaze\\ExamplePuzzleSmall.txt";
+        String filePath = "C:\\Users\\marco\\OneDrive\\Documentos\\SolveTheMaze\\ExamplePuzzleSmall.txt";
         //String filePath = "C:\\Users\\marco\\OneDrive\\Documentos\\SolveTheMaze\\ExamplePuzzleBig.txt";
-        String filePath = "C:\\Users\\marco\\OneDrive\\Documentos\\SolveTheMaze\\ExamplePuzzleHuge.txt";
+        //String filePath = "C:\\Users\\marco\\OneDrive\\Documentos\\SolveTheMaze\\ExamplePuzzleHuge.txt";
 
         // Filepath empty validation
         if (filePath == null || filePath.trim().isEmpty()) {
@@ -31,7 +41,10 @@ public class SolveTheMaze {
     }
 
     /**
-     * @param filePath - String contains path to  the puzzle file
+     * Returns the Maze that results from the given file
+     * 
+     * @param filePath      String contains path to  the puzzle file
+     * @return              The Maze instance representing the puzzle read from the file     
      */
     public static Maze parseMaze(String filePath) {
 
@@ -50,6 +63,7 @@ public class SolveTheMaze {
                 List<Cell> row = new ArrayList<>();
                 char[] c = line.toCharArray();
                 
+                // * Convert each character to a new Cell object
                 for (int x = 0; x < c.length; x++) {
                     if (c[x] == ' ' || c[x] == 'B' || c[x] == 'E') 
                         row.add(new Cell(x, y, false));

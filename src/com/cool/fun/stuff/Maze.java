@@ -3,6 +3,14 @@ package com.cool.fun.stuff;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * This class contains the following attributes:
+ * - A matrix of Cell objects that represent the parsed maze; 
+ * - The Player instance 
+ * - References to the start and end Cells of the maze
+ * 
+ * @author lChrios
+ */
 public class Maze {
     
     private List<List<Cell>> maze;
@@ -10,19 +18,30 @@ public class Maze {
     private Cell end;
     private Cell start = new Cell(0, 1, false);
 
+    /**
+     * Constructor method for the Maze which generates 
+     * a new Player instance along with the given end Cell object.
+     * 
+     * @param maze          The matrix of Cell objects
+     * @param endHeight     Height of the end Cell object
+     * @return              Maze instance
+     */
     public Maze(List<List<Cell>> maze, Integer endHeight) {
         this.maze = maze;
         this.player = new Player();
         this.end = new Cell(0, endHeight, false);
     }
 
-    public void nextStep() {
-        player.move();        
-    }
-
-
+    /**
+     * This method will find the exit of the maze by following the
+     * right-hand rule to solve mazes. 
+     * The player will try to move to the rightest available side.
+     * Each player movement will conclude with the printing of the 
+     * maze through the printMaze method and a subsequent sleep to 
+     * visualize the movement through the CLI.
+     */
     public void solve() {
-        // enter the first row
+        // Enter the first maze Cell
         if (start.containsPlayer(player)) {
             player.move();
             printMaze();
@@ -59,14 +78,17 @@ public class Maze {
         System.out.println("Exit was found.");
     }
 
+    /**
+     * This method will check for the queried side availability 
+     * based on the player orientation and the method input.
+     * 
+     * @param side  A number indicating the side to check based on a side code
+     *                  0 = right side
+     *                  1 = front side
+     *                  2 = left side
+     * @return      Boolean for the availability for queried side 
+     */
     public Boolean isSideAvailable(Integer side) {
-        /*
-         * Side coding
-         * ------------------------
-         * 0 = right
-         * 1 = front
-         * 2 = left
-         */
 
         Integer x = player.getX();
         Integer y = player.getY();
@@ -110,6 +132,10 @@ public class Maze {
         }
     }
 
+    /**
+     * This method will print the current state of the maze 
+     * through the console by serializing the Cell into a String
+     */
     public void printMaze() {
         StringBuffer sb = new StringBuffer();
         for(List<Cell> row : this.maze) {
@@ -130,7 +156,10 @@ public class Maze {
         System.out.println(sb.toString());
     }
 
-    public Boolean isSolved() {
-        return end.containsPlayer(player);
-    }
+    /**
+     * Checks if the player is present in the end Cell
+     * 
+     * @return  Boolean whether the player is located in the end Cell or not
+     */
+    public Boolean isSolved() { return end.containsPlayer(player); }
 }
