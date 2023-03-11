@@ -17,8 +17,7 @@ public class Player {
      *      2 = South
      *      3 = East
      */
-    // TODO: Change direction from Integer to ENUMS
-    private Integer dir; 
+    private Orientation dir; 
     private Integer x;
     private Integer y;
 
@@ -26,50 +25,54 @@ public class Player {
         // * Player will always start at this coordinates lookint to East
         this.x = 0;
         this.y = 1;
-        this.dir = 3;
+        this.dir = Orientation.EAST;
     }
 
     public Integer getX() { return this.x; }
+    public void setX(Integer x) { this.x = x; }
 
     public Integer getY() { return this.y; }
+    public void setY(Integer y) { this.y = y; }
 
-    public Integer getDir() { return this.dir; }
+    public Orientation getDir() { return this.dir; }
 
     /**
      * Will rotate the player to the next left cardinal direction
      */
-    public void rotateRight() { this.dir = ((this.dir - 1) + 4) % 4; }
+    public void rotateRight() { this.dir = Orientation.getOrientation(((this.dir.getCode() - 1) + 4) % 4); }
 
     /**  
      * Will rotate the player to the next left cardinal direction
      */
-    public void rotateLeft() { this.dir = (this.dir + 1) % 4; }
+    public void rotateLeft() { this.dir = Orientation.getOrientation((this.dir.getCode() + 1) % 4); }
 
     /**  
      * Will rotate the player to backwards direction
      */
-    public void rotateBackward() { this.dir = (this.dir + 2) % 4; }
+    public void rotateBackward() { this.dir = Orientation.getOrientation((this.dir.getCode() + 2) % 4); }
 
     /**
      * Advance the player to the next cell depending on the current direction
      */
     public void move() {
-        switch (this.dir) {
-            case 0:
+        this.setX(this.getX() + this.dir.getFront().getDx());
+        this.setY(this.getY() + this.dir.getFront().getDy());
+        /*switch (this.dir) {
+            case NORTH:
                 this.y--;
                 break;
-            case 1:
+            case WEST:
                 this.x--;
                 break;
-            case 2:
+            case SOUTH:
                 this.y++;
                 break;
-            case 3:
+            case EAST:
                 this.x++;
                 break;
             default:
                 break;
-        }
+        }*/
     }
 
 }

@@ -11,7 +11,12 @@ public enum Orientation {
     private Side right;
     private Side front;
 
-    private Orientation(Integer code, Side right, Side front, Side left) { this.code = code; }
+    private Orientation(Integer code, Side right, Side front, Side left) { 
+        this.code = code;
+        this.right = right;
+        this.front = front;
+        this.left = left; 
+    }
 
     public Integer getCode() { return this.code; }
     public Side getLeft() { return this.left; }
@@ -24,21 +29,6 @@ public enum Orientation {
         }
 
         return null;
-    }
-
-    public enum Side {
-        TOP(0, -1),
-        LEFT(-1, 0),
-        BOTTOM(0, 1),
-        RIGHT(1, 0);
-    
-        private Integer dx;
-        private Integer dy;
-    
-        private Side(Integer dx, Integer dy) { this.dx = dx; this.dy = dy; }
-    
-        public Integer getDx() { return this.dx; }
-        public Integer getDy() { return this.dy; }
     }
 
 }

@@ -92,7 +92,7 @@ public class Maze {
 
         Integer x = player.getX();
         Integer y = player.getY();
-        Integer dir = player.getDir();
+        Integer dir = player.getDir().getCode();
 
         // todo: improve this section
         switch(side) {
