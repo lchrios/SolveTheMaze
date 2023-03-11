@@ -22,6 +22,7 @@ public class SolveTheMaze {
      */
     public static void main(String[] args) {
         
+        // TODO: Rollback to the args[0]
         //String filePath = args[0];
         String filePath = "C:\\Users\\marco\\OneDrive\\Documentos\\SolveTheMaze\\ExamplePuzzleSmall.txt";
         //String filePath = "C:\\Users\\marco\\OneDrive\\Documentos\\SolveTheMaze\\ExamplePuzzleBig.txt";
