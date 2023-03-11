@@ -88,48 +88,14 @@ public class Maze {
      *                  2 = left side
      * @return      Boolean for the availability for queried side 
      */
-    public Boolean isSideAvailable(Integer side) {
+    public Boolean isSideAvailable(Integer sideCode) {
 
         Integer x = player.getX();
         Integer y = player.getY();
-        Integer dir = player.getDir().getCode();
-
-        // todo: improve this section
-        switch(side) {
-            case 0:
-                switch(dir) {
-                    case 0:
-                        return !this.maze.get(y).get(x + 1).isWall();
-                    case 1:
-                        return !this.maze.get(y - 1).get(x).isWall();
-                    case 2:
-                        return !this.maze.get(y).get(x - 1).isWall();
-                    default:
-                        return !this.maze.get(y + 1).get(x).isWall();
-                }
-            case 1:
-                switch(dir) {
-                    case 0:
-                        return !this.maze.get(y - 1).get(x).isWall();
-                    case 1:
-                        return !this.maze.get(y).get(x - 1).isWall();
-                    case 2:
-                        return !this.maze.get(y + 1).get(x).isWall();
-                    default:
-                        return !this.maze.get(y).get(x + 1).isWall();
-                }
-            default:
-                switch(dir) {
-                    case 0:
-                        return !this.maze.get(y).get(x - 1).isWall();
-                    case 1:
-                        return !this.maze.get(y + 1).get(x).isWall();
-                    case 2:
-                        return !this.maze.get(y).get(x + 1).isWall();
-                    default:
-                        return !this.maze.get(y - 1).get(x).isWall();
-                }
-        }
+        
+        Side side = this.player.getDir().getSide(sideCode);
+        
+        return !this.maze.get(y + side.getDy()).get(x + side.getDx()).isWall();
     }
 
     /**

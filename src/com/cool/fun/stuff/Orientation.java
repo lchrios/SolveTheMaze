@@ -19,9 +19,19 @@ public enum Orientation {
     }
 
     public Integer getCode() { return this.code; }
-    public Side getLeft() { return this.left; }
+    
+    /**
+     * Generic method to obtain the side based on the query code
+     * 
+     * @param side  Code to return for left, front or right side
+     *              0 = right, 1 = front, 2 = left
+     * @return      Side depending on the queried code
+     */
+    public Side getSide(Integer side) {
+        return side == 0 ? this.right : side == 1 ? this.front : this.left;
+    }
+
     public Side getFront() { return this.front; }
-    public Side getRight() { return this.right; }
 
     public static Orientation getOrientation(Integer code) {
         for (Orientation or : Orientation.values()) {

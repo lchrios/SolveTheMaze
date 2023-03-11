@@ -11,7 +11,7 @@ public class Player {
     /**
      * Contains the direction at which the player is facing through storing it by this code
      * ------------------------
-     * Coding for the oritnetation
+     * Coding for the orientation
      *      0 = North
      *      1 = West
      *      2 = South
@@ -55,24 +55,10 @@ public class Player {
      * Advance the player to the next cell depending on the current direction
      */
     public void move() {
-        this.setX(this.getX() + this.dir.getFront().getDx());
-        this.setY(this.getY() + this.dir.getFront().getDy());
-        /*switch (this.dir) {
-            case NORTH:
-                this.y--;
-                break;
-            case WEST:
-                this.x--;
-                break;
-            case SOUTH:
-                this.y++;
-                break;
-            case EAST:
-                this.x++;
-                break;
-            default:
-                break;
-        }*/
+        Side front = this.dir.getFront();
+
+        this.setX(this.getX() + front.getDx());
+        this.setY(this.getY() + front.getDy());
     }
 
 }
