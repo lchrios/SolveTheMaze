@@ -1,5 +1,7 @@
 package com.cool.fun.stuff;
 
+import java.util.zip.Deflater;
+
 public class Player {
 
     private Integer x;
@@ -25,9 +27,20 @@ public class Player {
 
     public Integer getY() { return this.y; }
 
-    public void rotate() { 
-        // Will rotate the player to the next right cardinal direction
-        dir = (dir + 1) % 4;
+    public Integer getDir() { return this.dir; }
+
+    public void rotateRight() { 
+        // Will rotate the player to the next left cardinal direction
+        this.dir = ((this.dir - 1) + 4) % 4;
+    }
+
+    public void rotateLeft() { 
+        // Will rotate the player to the next left cardinal direction
+        this.dir = (this.dir + 1) % 4;
+    }
+
+    public void rotateBackward() {
+        this.dir = (this.dir + 2) % 4;
     }
 
     public void move() {
@@ -43,6 +56,8 @@ public class Player {
                 break;
             case 3:
                 this.x++;
+                break;
+            default:
                 break;
         }
     }

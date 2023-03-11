@@ -14,8 +14,17 @@ public class SolveTheMaze {
         // File validation
         if (filePath == null || filePath.trim().isEmpty()) {
             System.out.println("Please specify a file path.");
-            return;
+            return ;
         }
+
+        Maze maze = parseMaze(filePath);
+        
+        maze.solve();
+
+        return;
+    }
+
+    public static Maze parseMaze(String filePath) {
 
         List<List<Cell>> map = new ArrayList<>();
         Integer endH = 0;
@@ -49,21 +58,7 @@ public class SolveTheMaze {
             System.err.println("The file was not found.");
         }
 
-        Maze maze = new Maze(map, endH);
-        maze.solve();
-
-        maze.printMaze();
-
-        // TODO: SOLVING CODE
-
-        // Enter to the first cell in the maze
-        maze.nextStep();
-        while (!maze.isSolved()) {
-            // check if right path is available
-            maze.
-        }
-
-        return;
+        return new Maze(map, endH);
     }
 
 }
