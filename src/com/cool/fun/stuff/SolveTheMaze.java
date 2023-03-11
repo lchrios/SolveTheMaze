@@ -7,11 +7,17 @@ import java.util.List;
 
 public class SolveTheMaze {
     
+    /**
+     * @param args - String[] contains at the 0 position the file path to the puzzle file
+     */
     public static void main(String[] args) {
         
-        String filePath = args[0];
+        //String filePath = args[0];
+        //String filePath = "C:\\Users\\marco\\OneDrive\\Documentos\\SolveTheMaze\\ExamplePuzzleSmall.txt";
+        //String filePath = "C:\\Users\\marco\\OneDrive\\Documentos\\SolveTheMaze\\ExamplePuzzleBig.txt";
+        String filePath = "C:\\Users\\marco\\OneDrive\\Documentos\\SolveTheMaze\\ExamplePuzzleHuge.txt";
 
-        // File validation
+        // Filepath empty validation
         if (filePath == null || filePath.trim().isEmpty()) {
             System.out.println("Please specify a file path.");
             return ;
@@ -24,6 +30,9 @@ public class SolveTheMaze {
         return;
     }
 
+    /**
+     * @param filePath - String contains path to  the puzzle file
+     */
     public static Maze parseMaze(String filePath) {
 
         List<List<Cell>> map = new ArrayList<>();
@@ -50,6 +59,7 @@ public class SolveTheMaze {
                     if (c[x] == 'E') endH = y; 
                 }
 
+                map.add(row);
                 y++;
             }
 

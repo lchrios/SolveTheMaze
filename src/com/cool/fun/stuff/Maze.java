@@ -25,6 +25,7 @@ public class Maze {
         // enter the first row
         if (start.containsPlayer(player)) {
             player.move();
+            printMaze();
         }
 
         while (!isSolved()) {
@@ -39,6 +40,7 @@ public class Maze {
             } else if (isSideAvailable(2)) {
                 // check if left is available
                 player.rotateLeft();
+                player.move();
             } else {
                 // rotate backwards
                 player.rotateBackward();
@@ -48,11 +50,13 @@ public class Maze {
             printMaze();
 
             try {
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.MILLISECONDS.sleep(250);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }   
+        }
+        
+        System.out.println("Exit was found.");
     }
 
     public Boolean isSideAvailable(Integer side) {
@@ -68,6 +72,7 @@ public class Maze {
         Integer y = player.getY();
         Integer dir = player.getDir();
 
+        // todo: improve this section
         switch(side) {
             case 0:
                 switch(dir) {
@@ -96,11 +101,11 @@ public class Maze {
                     case 0:
                         return !this.maze.get(y).get(x - 1).isWall();
                     case 1:
-                        return !this.maze.get(y - 1).get(x).isWall();
+                        return !this.maze.get(y + 1).get(x).isWall();
                     case 2:
                         return !this.maze.get(y).get(x + 1).isWall();
                     default:
-                        return !this.maze.get(y + 1).get(x).isWall();
+                        return !this.maze.get(y - 1).get(x).isWall();
                 }
         }
     }
