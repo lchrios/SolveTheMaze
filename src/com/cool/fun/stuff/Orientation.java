@@ -1,5 +1,11 @@
 package com.cool.fun.stuff;
 
+/**
+ * This enum represents the orientation for the player and the 
+ * respective sides it has according to this orientation.
+ * 
+ * @author lChrios
+ */
 public enum Orientation {
         NORTH(0, Side.RIGHT, Side.TOP, Side.LEFT),
         WEST(1, Side.TOP, Side.LEFT, Side.BOTTOM),
@@ -33,10 +39,15 @@ public enum Orientation {
 
     public Side getFront() { return this.front; }
 
+    /**
+     * Used to determine the Direction based on the direction code
+     * 
+     * @param code  Number to query the code for the matching orientation
+     * @return      Returns the corresponding Orientation
+     */
     public static Orientation getOrientation(Integer code) {
-        for (Orientation or : Orientation.values()) {
-            if (or.code == code) return or;
-        }
+        for (Orientation or : Orientation.values())
+            if (or.code == code) return or; // Orientation matched
 
         return null;
     }

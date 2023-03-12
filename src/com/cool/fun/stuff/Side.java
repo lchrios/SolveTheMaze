@@ -1,5 +1,10 @@
 package com.cool.fun.stuff;
-
+/**
+ * Represents the diferential for each side to calculate the adjacent Cells
+ * Used to calculate the Cell at the given side which depends on the Orientation
+ * 
+ * @author lChrios
+ */
 public enum Side {
     TOP(0,-1),
     LEFT(-1, 0),

@@ -35,6 +35,7 @@ public class SolveTheMaze {
             return ;
         }
 
+        // Parse file and create the Maze object
         Maze maze = parseMaze(filePath);
         
         maze.solve();
@@ -55,6 +56,7 @@ public class SolveTheMaze {
 
         try {
             
+            // Read it through a BR
             FileReader fr = new FileReader(filePath);
             BufferedReader br = new BufferedReader(fr);
             String line;
@@ -63,19 +65,22 @@ public class SolveTheMaze {
             while((line = br.readLine()) != null) {
 
                 List<Cell> row = new ArrayList<>();
+                // Split row into characters
                 char[] c = line.toCharArray();
                 
-                // * Convert each character to a new Cell object
+                //  Convert each character to a new Cell object
                 for (int x = 0; x < c.length; x++) {
+                    // Is space, end or start of the maze
                     if (c[x] == ' ' || c[x] == 'B' || c[x] == 'E') 
                         row.add(new Cell(x, y, false));
+                    // Is wall
                     else if (c[x] == 'X') 
                         row.add(new Cell(x, y, true));
                     
-                    if (c[x] == 'E') endH = y; 
+                    if (c[x] == 'E') endH = y; // Save height of the exit
                 }
 
-                map.add(row);
+                map.add(row); // Save row
                 y++;
             }
 
@@ -84,6 +89,7 @@ public class SolveTheMaze {
             System.err.println("The file was not found.");
         }
 
+        // Return the object
         return new Maze(map, endH);
     }
 

@@ -68,8 +68,9 @@ public class Maze {
 
             printMaze();
 
+            // Sleep for X milliseconds
             try {
-                TimeUnit.MILLISECONDS.sleep(250);
+                TimeUnit.MILLISECONDS.sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -105,17 +106,14 @@ public class Maze {
     public void printMaze() {
         StringBuffer sb = new StringBuffer();
         for(List<Cell> row : this.maze) {
+            
             row.stream().forEach(cell -> {
-                if (cell.containsPlayer(player)) {
-                    sb.append('O');
-                } else if (cell.isEnd(this.end.getY())) {
-                    sb.append('E');
-                } else if (cell.isStart()) {
-                    sb.append('B');
-                } else {
-                    sb.append(cell.isWall() ? 'X' : ' ');
-                }
+                if (cell.containsPlayer(player))        sb.append('O');
+                else if (cell.isEnd(this.end.getY()))   sb.append('E');
+                else if (cell.isStart())                sb.append('B');
+                else                                    sb.append(cell.isWall() ? 'X' : ' ');
             });
+
             sb.append('\n');
         }
 
