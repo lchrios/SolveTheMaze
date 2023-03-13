@@ -1,0 +1,10 @@
+For compiling into .class (while at general folder)
+javac -d .\build .\src\com\cool\fun\stuff\*.java
+
+
+For compiling into JAR (while at .\build\ directory)
+jar cvf SolveTheMaze.jar *
+
+
+To run with the passed filepath
+java -cp .\build\SolveTheMaze.jar com.cool.fun.stuff.SolveTheMaze ExamplePuzzle.txt
